@@ -1,8 +1,12 @@
+import os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
 
-BOT_TOKEN = "7719525181:AAFY-fzn0O0axMIjT6SurEi681Amy88_zKU"
-OWNER_ID = 7569267443
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+OWNER_ID = int(os.getenv("OWNER_ID", "0"))
+
+if not BOT_TOKEN or not OWNER_ID:
+    raise RuntimeError("请设置 BOT_TOKEN 和 OWNER_ID 环境变量")
 
 user_map = {}
 
